@@ -2,6 +2,8 @@ import tensorflow as tf
 
 tf.config.run_functions_eagerly(True)
 
+import joblib
+from tensorflow.keras.models import load_model
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 from sklearn.preprocessing import StandardScaler
@@ -147,3 +149,17 @@ class NeuralNetwork:
 
         self.scaler = joblib.load(scaler_path)
         print(f"Scaler loaded from {scaler_path}")
+
+
+
+
+def save(model,scaler,model_str ="model.keras",scaler_str ="scaler.pkl"):
+    joblib.dump(scaler, scaler_str)
+    model.save(model_str)
+
+
+
+def load(model_str ="model.keras",scaler_str ="scaler.pkl"):
+    model = load_model(model_str)
+    scaler = joblib.load(scaler_str)
+    return model,scaler
