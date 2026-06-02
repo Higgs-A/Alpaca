@@ -163,3 +163,5 @@ def load(model_str ="model.keras",scaler_str ="scaler.pkl"):
     model = load_model(model_str)
     scaler = joblib.load(scaler_str)
     return model,scaler
+
+#XXX test
